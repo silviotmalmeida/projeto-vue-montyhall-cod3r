@@ -1,14 +1,27 @@
 <template>
   <!-- trecho de código que representa o html do componente -->
   <!-- definindo o componente door -->
-  <!-- o atributo @click é responsável por escutar o evento de click padrão e emitir um novo evento de nome .... e valor .... -->
-  <!-- o atributo :class aplica as classes referenciadas caso tenham sido passadas na criação do componente  -->
+  <!-- o atributo :class aplica as classes referenciadas caso as variáveis passadas sejam true -->
   <div class="door-area">
-    <div class="door-frame" :class="{ selected: selected && !open }">
+    <!-- moldura da porta selecionada -->
+    <!-- aplica a classe selected somente se a variável selected for true -->
+    <div class="door-frame" :class="{ selected }">
+      <!-- o presente só será renderizado se a porta estiver aberta e se o atributo hasGift dor true -->
       <Gift v-if="open && hasGift" />
     </div>
+
+    <!-- porta -->
+    <!-- aplica a classe open somente se a variável open for true -->
+    <!-- o atributo @click é responsável por escutar o evento de click padrão e alternar o estado da variável selected -->
     <div class="door" :class="{ open }" @click="selected = !selected">
+      <!-- número da porta -->
+      <!-- aplica a classe selected somente se a variável selected for true -->
+      <!-- recebe o valor do atributo number -->
       <div class="number" :class="{ selected }">{{ number }}</div>
+
+      <!-- maçaneta -->
+      <!-- aplica a classe selected somente se a variável selected for true -->
+      <!-- o atributo @click.stop é responsável por escutar o evento de click solto padrão e alternar o estado da variável open -->
       <div class="knob" :class="{ selected }" @click.stop="open = true"></div>
     </div>
   </div>
@@ -20,18 +33,26 @@ import Gift from "./Gift";
 
 export default {
   name: "Door",
+
   // componentes utilizados na composição deste componente
   components: { Gift },
 
+  // propriedades a serem recebidas para criação do componente
   props: {
+    //indica o número da porta
     number: {},
+
+    // indica se a porta possui presente
     hasGift: { type: Boolean },
   },
 
   // função que retorna o estado inicial das variáveis do componente
   data: function() {
     return {
+      // indica se a porta está anerta ou fechada
       open: false,
+
+      // indica se a porta está selecionada ou não
       selected: false,
     };
   },
@@ -83,6 +104,10 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 15px;
+}
+
+.door .number {
+  color: brown;
 }
 
 .door .knob {

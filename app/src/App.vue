@@ -1,11 +1,16 @@
 <template>
   <!-- trecho de código que representa o html do componente -->
   <!-- definindo o componente door -->
-  <!-- o atributo @click é responsável por escutar o evento de click padrão e emitir um novo evento de nome .... e valor .... -->
   <div id="app">
+    <!-- texto da página -->
     <h1>Problema de Monty Hall</h1>
+
+    <!-- formulário -->
     <div class="form">
+      <!-- se o jogo ainda não foi iniciado: -->
       <div v-if="!started">
+        <!-- renderiza o campo de quantidade de portas -->
+        <!-- vincula a variável portsAmount ao valor numérico do input -->
         <label for="portsAmount">Quantas portas? </label>
         <input
           type="text"
@@ -14,7 +19,11 @@
           v-model.number="portsAmount"
         />
       </div>
+
+      <!-- se o jogo ainda não foi iniciado: -->
       <div v-if="!started">
+        <!-- renderiza o campo de porta premiada -->
+        <!-- vincula a variável selectedPort ao valor numérico do input -->
         <label for="selectedPort">Qual porta é premiada? </label>
         <input
           type="text"
@@ -23,11 +32,25 @@
           v-model.number="selectedPort"
         />
       </div>
+
+      <!-- se o jogo ainda não foi iniciado: -->
+      <!-- renderiza o botão iniciar -->
+      <!-- o atributo @click é responsável por escutar o evento de click padrão e emitir um novo evento que altera a variável started para true -->
       <button v-if="!started" @click="started = true">Iniciar</button>
+
+      <!-- se o jogo já foi iniciado: -->
+      <!-- renderiza o botão reiniciar -->
+      <!-- o atributo @click é responsável por escutar o evento de click padrão e emitir um novo evento que altera a variável started para false -->
       <button v-if="started" @click="started = false">Reiniciar</button>
     </div>
+
+    <!-- se o jogo já foi iniciado: -->
+    <!-- inicia a renderização das portas -->
     <div class="doors" v-if="started">
+      <!-- laço de repetição para desenhar a quantidade de portas definida na variável portsAmount -->
       <div v-for="i in portsAmount" :key="i">
+        <!-- desenhando a porta de número i -->
+        <!-- caso este número seja a porta premiada, seta o atributo :hasGift como true -->
         <Door :hasGift="i === selectedPort" :number="i" />
       </div>
     </div>
@@ -47,8 +70,13 @@ export default {
   // função que retorna o estado inicial das variáveis do componente
   data: function() {
     return {
+      // indica se o jogo iniciou
       started: false,
+
+      // indica a quantidade de portas do jogo
       portsAmount: 3,
+
+      // indica qual a porta premiada
       selectedPort: null,
     };
   },

@@ -2,9 +2,16 @@
   <!-- trecho de código que representa o html do componente -->
   <!-- definindo o componente gift -->
   <div class="gift">
+    <!-- laço vertical -->
     <div class="gift-tie-1"></div>
+
+    <!-- laço horizontal -->
     <div class="gift-tie-2"></div>
+
+    <!-- tampa da caixa -->
     <div class="gift-top"></div>
+
+    <!-- caixa -->
     <div class="gift-body"></div>
   </div>
 </template>
