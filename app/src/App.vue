@@ -1,6 +1,6 @@
 <template>
   <!-- trecho de código que representa o html do componente -->
-  <!-- definindo o componente door -->
+  <!-- definindo a div principal com o componente raiz a ser renderizado -->
   <div id="app">
     <!-- texto da página -->
     <h1>Problema de Monty Hall</h1>
